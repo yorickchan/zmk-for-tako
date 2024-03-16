@@ -8,10 +8,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
-#define NAV_L 1
-#define OTHER_L 2
-#define NUM_L 3
-
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 
 &lt { quick_tap_ms = <200>; };
@@ -28,57 +24,130 @@
         };
     };
 
+    // combos
     combos {
-        compatible = "zmk,combos";
+      compatible = "zmk,combos";
+      // right hand
+      combo_esc {
+          timeout-ms = <50>;
+          key-positions = <16 17>;
+          bindings = <&kp ESC>;
+      };
 
-        left_bkt {
-            bindings = <&kp LEFT_BRACKET>;
-            key-positions = <2 3>;
-        };
+      combo_lgui {
+          timeout-ms = <50>;
+          key-positions = <5 6>;
+          bindings = <&kp LGUI>;
+      };
 
-        right_bkt {
-            bindings = <&kp RBKT>;
-            key-positions = <7 6>;
-        };
+      combo_fullscreen {
+          timeout-ms = <50>;
+          key-positions = <25 26>;
+          bindings = <&kp F11>;
+      };
 
-        left_par {
-            bindings = <&kp LPAR>;
-            key-positions = <13 12>;
-        };
+      combo_wkspc_up {
+          timeout-ms = <50>;
+          key-positions = <9 19>;
+          bindings = <&kp LC(UP)>;
+      };
 
-        right_par {
-            bindings = <&kp RPAR>;
-            key-positions = <16 17>;
-        };
+      combo_wkspc_down {
+          timeout-ms = <50>;
+          key-positions = <19 29>;
+          bindings = <&kp LC(DOWN)>;
+      };
 
-        left_brc {
-            bindings = <&kp LBRC>;
-            key-positions = <22 23>;
-        };
+      combo_win_up {
+          timeout-ms = <50>;
+          key-positions = <7 8>;
+          bindings = <&kp LS(LG(UP))>;
+      };
 
-        right_brc {
-            bindings = <&kp RBRC>;
-            key-positions = <26 27>;
-        };
+      combo_win_down {
+          timeout-ms = <50>;
+          key-positions = <27 28>;
+          bindings = <&kp LS(LG(DOWN))>;
+      };
 
-        blsh {
-            bindings = <&kp BSLH>;
-            key-positions = <4 5>;
-        };
+      combo_win_left {
+          timeout-ms = <50>;
+          key-positions = <17 18>;
+          bindings = <&kp LS(LG(LEFT))>;
+      };
 
-        pipe {
-            bindings = <&kp PIPE>;
-            key-positions = <14 15>;
-        };
+      combo_win_right {
+          timeout-ms = <50>;
+          key-positions = <9 18>;
+          bindings = <&kp LS(LG(RIGHT))>;
+      };
+
+      combo_rdelete {
+          timeout-ms = <50>;
+          key-positions = <15 16>;
+          bindings = <&kp DELETE>;
+      };
+
+      // left hand
+      combo_zoomin {
+          timeout-ms = <50>;
+          key-positions = <3 4>;
+          bindings = <&kp LC(PLUS)>;
+      };
+
+      combo_zoomout {
+          timeout-ms = <50>;
+          key-positions = <23 24>;
+          bindings = <&kp LC(MINUS)>;
+      };
+
+      combo_pgdn {
+          timeout-ms = <50>;
+          key-positions = <22 23>;
+          bindings = <&kp PG_DN>;
+      };
+
+      combo_pgup {
+          timeout-ms = <50>;
+          key-positions = <2 3>;
+          bindings = <&kp PG_UP>;
+      };
+
+      combo_ldelete {
+          timeout-ms = <50>;
+          key-positions = <13 14>;
+          bindings = <&kp DELETE>;
+      };
+
+      // symbols
+      combo_underscore {
+          timeout-ms = <50>;
+          key-positions = <11 12>;
+          bindings = <&kp UNDERSCORE>;
+      };
+
+      combo_minus {
+          timeout-ms = <50>;
+          key-positions = <12 13>;
+          bindings = <&kp MINUS>;
+      };
+
+      // others
+      combo_capswd {
+          timeout-ms = <50>;
+          key-positions = <2 7>;
+          bindings = <&caps_word>;
+      };
+
     };
 
-    // conditional_layers {
-    //     compatible = "zmk,conditional-layers";
-    //     tri_layer {
-    //         if-layers = <1 2>;
-    //         then-layer = <3>;
-    //     };
-    // };
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
@@ -149,15 +218,6 @@
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
-
-        sym_layer {
-            bindings = <
-&kp LBRC   &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp RBRC        &trans  &trans  &trans  &trans  &trans
-&kp COLON  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp PLUS        &trans  &trans  &trans  &trans  &trans
-&kp TILDE  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(BSLH)    &trans  &trans  &trans  &trans  &trans
-                                   &kp LS(N0)  &kp UNDER       &trans  &trans
             >;
         };
     };
